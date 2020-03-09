@@ -14,3 +14,9 @@ npx create-nx-workspace
 npm run ng add @nrwl/angular # Add Angular capabilities to a workspace
 
 npm run ng g @nrwl/angular:app music-app
+
+npm install -g @nrwl/cli
+
+ng s music-app
+
+npm run start music-app
