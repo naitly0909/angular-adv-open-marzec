@@ -56,3 +56,5 @@ npm run ng g c features/blog/components/blog-post
 <!-- npm run ng g c features/blog/components/blog-post-full -->
 
 
+ng g s core/api/blog-api
+
