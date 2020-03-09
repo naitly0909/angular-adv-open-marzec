@@ -6,7 +6,7 @@ import { BlogRoutingModule } from './blog-routing.module';
 import { BlogPostComponent } from './components/blog-post/blog-post.component';
 import { BlogPostsComponent } from './containers/blog-posts/blog-posts.component';
 import { environment } from '../../../environments/environment';
-import { API_URL } from '../../core/api/blog-api.service';
+import { API_URL, BlogApiService } from '../../core/api/blog-api.service';
 
 @NgModule({
   declarations: [BlogPostComponent, BlogPostsComponent],
@@ -15,7 +15,20 @@ import { API_URL } from '../../core/api/blog-api.service';
     {
       provide: API_URL,
       useValue: environment.api.url
-    }
+    },
+    // {
+    //   provide: BlogApiService,
+    //   useFactory(url: string /* a,b,c,d */) {
+    //     return new BlogApiService(url);
+    //   },
+    //   deps: [API_URL /* , B, C, D... */]
+    // },
+    // {
+    //   provide: BlogApiService,
+    //   useClass: MockBlogApiService,
+    //   // deps: [MOCK_API_URL]
+    // },
+    // BlogApiService
   ]
 })
 export class BlogModule {}

@@ -4,16 +4,14 @@ import { Observable, of } from 'rxjs';
 
 // https://jsonplaceholder.typicode.com/posts/?_expand=user&_embed=comments
 import fixture from '../fixtures/full-posts-list.json';
-import { environment } from '../../../environments/environment';
 
-
-export const API_URL = new InjectionToken<string>('Blog API Token')
+export const API_URL = new InjectionToken<string>('Blog API Token');
 
 @Injectable({
+  // providedIn: BlogModule,
   providedIn: 'root'
 })
 export class BlogApiService {
-
   constructor(@Inject(API_URL) private api_url: string) {}
 
   fetchRecentPosts(): Observable<Post[]> {
