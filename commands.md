@@ -20,3 +20,14 @@ npm install -g @nrwl/cli
 ng s music-app
 
 npm run start music-app
+
+===
+
+npm run ng add @angular/material
+
+? Choose a prebuilt theme name, or "custom" for a custom theme: Indigo/Pink        [ Preview: https://material.angular.io?theme=indigo-pink ]
+? Set up global Angular Material typography styles? Yes 
+? Set up browser animations for Angular Material? Yes
+
+
+npm i bootstrap
