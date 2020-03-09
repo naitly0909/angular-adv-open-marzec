@@ -1,0 +1,13 @@
+<!-- https://material.angular.io/components/list/overview#multi-line-lists -->
+
+<mat-list>
+  <h3 mat-subheader>Comments</h3>
+  <mat-list-item *ngFor="let comment of comments">
+    <h3 matLine>{{ comment.name }}</h3>
+    <p matLine>
+      <span> {{ comment.body }} </span>
+      <span> -- {{ comment.email }} </span>
+    </p>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>

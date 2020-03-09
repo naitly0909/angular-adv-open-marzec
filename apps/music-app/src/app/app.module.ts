@@ -7,20 +7,24 @@ import { CoreModule } from './core/core.module';
 import { BlogModule } from './features/blog/blog.module';
 import { UiModule } from './shared/ui/ui.module';
 import { AppRoutingModule } from './app-routing.module';
+import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, PageNotFoundComponent],
   imports: [
-    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    /* Shared */
+    UiModule,
+    /* Core */
     CoreModule,
+    /* Features */
     BlogModule,
-    UiModule
+    /* App */
+    AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [PageNotFoundComponent]
 })
 export class AppModule {}

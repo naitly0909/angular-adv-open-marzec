@@ -7,15 +7,23 @@ import { BlogPostComponent } from './components/blog-post/blog-post.component';
 import { BlogPostsComponent } from './containers/blog-posts/blog-posts.component';
 import { environment } from '../../../environments/environment';
 import { API_URL, BlogApiService } from '../../core/api/blog-api.service';
+import { UiModule } from '../../shared/ui/ui.module';
+import { CommentsComponent } from './components/comments/comments.component';
+import { SinglePostComponent } from './containers/single-post/single-post.component';
 
 @NgModule({
-  declarations: [BlogPostComponent, BlogPostsComponent],
-  imports: [BlogRoutingModule, CommonModule, BlogRoutingModule],
+  declarations: [BlogPostComponent, BlogPostsComponent, CommentsComponent, SinglePostComponent],
+  imports: [
+    BlogRoutingModule,
+    CommonModule,
+    BlogRoutingModule,
+    UiModule
+  ],
   providers: [
-    {
-      provide: API_URL,
-      useValue: environment.api.url
-    },
+    // {
+    //   provide: API_URL,
+    //   useValue: environment.api.url
+    // }
     // {
     //   provide: BlogApiService,
     //   useFactory(url: string /* a,b,c,d */) {

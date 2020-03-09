@@ -1,26 +1,12 @@
-<p>blog-posts works!</p>
+<h4>Blog</h4>
 
-<!-- <pre>{{posts | json }}</pre> -->
-
-<div *ngIf="posts as results; else notPostsMessage; ">
-
-
-  <!-- <ng-template ngFor [ngForOf]="results" let-post="$implicit" > -->
-
-    <div *ngFor="let post of results; index as i">
-      {{i+1}}. {{post.title}}
-    </div>
-
-    <music-apps-blog-post></music-apps-blog-post>
-  <!-- </ng-template> -->
-
+<div *ngIf="posts as results; else notPostsMessage">
+  <div *ngFor="let post of results; index as i">
+    <music-apps-blog-post [post]="post" class="d-block mb-3">
+    </music-apps-blog-post>
+  </div>
 </div>
 
 <ng-template #notPostsMessage>
   <p>No posts</p>
 </ng-template>
-
-<!-- ngIf let posts
-  ngIf let comments
-    ngIf let likes
-  {{posts}} {{comments}} {{likes}} -->

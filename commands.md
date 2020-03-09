@@ -58,3 +58,7 @@ npm run ng g c features/blog/components/blog-post
 
 ng g s core/api/blog-api
 
+ng g c features/blog/components/comments
+ng g c features/blog/containers/single-post
+
+ng g c shared/components/PageNotFound --export

@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { BlogApiService } from 'apps/music-app/src/app/core/api/blog-api.service';
 import { Post } from 'apps/music-app/src/app/core/models/Post';
+import { NgIf } from '@angular/common';
+
 
 @Component({
   selector: 'music-apps-blog-posts',

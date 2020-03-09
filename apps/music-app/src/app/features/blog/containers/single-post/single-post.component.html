@@ -1,0 +1,7 @@
+<div *ngIf="post">
+  <music-apps-blog-post [post]="post"> </music-apps-blog-post>
+
+  <music-apps-comments [comments]="post.comments"> </music-apps-comments>
+</div>
+
+<div *ngIf="!post">Loading...</div>

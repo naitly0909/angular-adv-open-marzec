@@ -1,5 +1,5 @@
 import { Injectable, Inject, InjectionToken } from '@angular/core';
-import { Post } from '../models/Post';
+import { Post, FullPost } from '../models/Post';
 import { Observable, of } from 'rxjs';
 
 // https://jsonplaceholder.typicode.com/posts/?_expand=user&_embed=comments
@@ -16,5 +16,13 @@ export class BlogApiService {
 
   fetchRecentPosts(): Observable<Post[]> {
     return of((fixture as unknown) as Post[]);
+  }
+
+  fetchPostById(id: number): Observable<FullPost|undefined> {
+    return of(
+      //
+      ((fixture as unknown) as FullPost[]) //
+        .find(p => p.id == id)
+    );
   }
 }
