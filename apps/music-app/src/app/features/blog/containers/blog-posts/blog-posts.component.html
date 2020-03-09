@@ -1,7 +1,26 @@
 <p>blog-posts works!</p>
 
+<!-- <pre>{{posts | json }}</pre> -->
 
-<music-apps-blog-post></music-apps-blog-post>
-<music-apps-blog-post></music-apps-blog-post>
-<music-apps-blog-post></music-apps-blog-post>
-<music-apps-blog-post></music-apps-blog-post>
+<ng-template
+  [ngIf]="posts"
+  [ngIfThen]="postsList"
+  [ngIfElse]="notPostsMessage"
+>
+</ng-template>
+
+<ng-template #postsList let-results="$implicit">
+
+  {{results}}
+  <music-apps-blog-post></music-apps-blog-post>
+</ng-template>
+
+<ng-template #notPostsMessage>
+  <p>No posts</p>
+</ng-template>
+
+
+<!-- ngIf let posts
+  ngIf let comments
+    ngIf let likes
+  {{posts}} {{comments}} {{likes}} -->
