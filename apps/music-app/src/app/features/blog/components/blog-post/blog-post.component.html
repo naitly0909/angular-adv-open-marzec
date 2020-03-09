@@ -1,5 +1,5 @@
 <!-- https://material.angular.io/components/card/examples -->
-
+<!-- https://material.io/resources/icons/?style=baseline -->
 <!-- <div mat-card-avatar class="header-image"></div> -->
 <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
 <!-- <img
@@ -17,9 +17,16 @@
       {{ post.body }}
     </p>
   </mat-card-content>
+
   <mat-card-actions align="end">
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-    <button mat-button [routerLink]="['post',post.id]">Read more</button>
+    <button mat-button color="accent">
+      <mat-icon>favorite</mat-icon> LIKE
+    </button>
+    <button mat-button><mat-icon>share</mat-icon>SHARE</button>
+    <button mat-button><mat-icon>comment</mat-icon> Comment</button>
+
+    <ng-container *ngIf="mode == 'readmore'">
+      <button mat-button [routerLink]="['post', post.id]">Read more</button>
+    </ng-container>
   </mat-card-actions>
 </mat-card>

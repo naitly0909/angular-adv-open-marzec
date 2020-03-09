@@ -7,14 +7,13 @@ import { Post } from '../../../../core/models/Post';
   styleUrls: ['./blog-post.component.css']
 })
 export class BlogPostComponent implements OnInit {
+  @Input()
+  post?: Post;
 
   @Input()
-  post?:Post
+  mode: 'full' | 'readmore' = 'readmore';
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-
-  }
-
+  ngOnInit(): void {}
 }
