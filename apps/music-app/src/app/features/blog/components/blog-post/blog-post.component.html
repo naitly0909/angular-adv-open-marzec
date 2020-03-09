@@ -23,7 +23,9 @@
       <mat-icon>favorite</mat-icon> LIKE
     </button>
     <button mat-button><mat-icon>share</mat-icon>SHARE</button>
-    <button mat-button><mat-icon>comment</mat-icon> Comment</button>
+    <button mat-button (click)="createComment()">
+      <mat-icon>comment</mat-icon> Comment
+    </button>
 
     <ng-container *ngIf="mode == 'readmore'">
       <button mat-button [routerLink]="['post', post.id]">Read more</button>
