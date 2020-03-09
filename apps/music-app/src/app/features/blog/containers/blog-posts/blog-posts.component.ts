@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { BlogApiService } from 'apps/music-app/src/app/core/api/blog-api.service';
 
 @Component({
   selector: 'music-apps-blog-posts',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogPostsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    // @Inject(BlogApiServiceToken)
+    private service: BlogApiService
+  ) {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
