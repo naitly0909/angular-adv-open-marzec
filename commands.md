@@ -31,3 +31,10 @@ npm run ng add @angular/material
 
 
 npm i bootstrap
+
+===
+
+ng g core -m app 
+ng g features/blog -m app --routing 
+ng g shared/ui -m app 
+
