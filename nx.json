@@ -1,0 +1,22 @@
+{
+  "npmScope": "music-apps",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "music-app": {
+      "tags": []
+    },
+    "music-app-e2e": {
+      "tags": [],
+      "implicitDependencies": ["music-app"]
+    }
+  }
+}
