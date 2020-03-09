@@ -9,6 +9,8 @@
 >
 </ng-template>
 
+<div *ngIf="posts then postsList else notPostsMessage"></div>
+
 <ng-template #postsList let-results="$implicit">
 
   {{results}}
