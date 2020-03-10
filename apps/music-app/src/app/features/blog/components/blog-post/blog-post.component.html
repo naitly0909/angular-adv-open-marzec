@@ -19,8 +19,11 @@
   </mat-card-content>
 
   <mat-card-actions align="end">
-    <button mat-button color="accent" (click)="likePost()">
-      <mat-icon>favorite</mat-icon> LIKE
+    <button mat-button color="accent" (click)="likePost()" *ngIf="post.likes">
+      <mat-icon>favorite_border</mat-icon> LIKE
+    </button>
+    <button mat-button color="accent" (click)="unlikePost()" *ngIf="!post.likes">
+      <mat-icon>favorite</mat-icon> UN-LIKE
     </button>
     <button mat-button><mat-icon>share</mat-icon>SHARE</button>
     <button mat-button (click)="createComment()">
@@ -33,5 +36,4 @@
   </mat-card-actions>
 
   <ng-content></ng-content>
-
 </mat-card>

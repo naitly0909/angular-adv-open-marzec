@@ -1,0 +1,17 @@
+
+<ng-container *ngIf="currentPost">
+
+  <music-apps-blog-post
+    [post]="currentPost"
+    (like)="like()"
+    (startComment)="openCommentBox()"
+  ></music-apps-blog-post>
+
+  <ng-container *ngIf="currentPost.comments">
+    <music-apps-comment-form *ngIf="commentBoxOpen"></music-apps-comment-form>
+
+    <music-apps-comments [comments]="currentPost.comments">
+    </music-apps-comments>
+  </ng-container>
+
+</ng-container>

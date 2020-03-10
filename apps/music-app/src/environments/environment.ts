@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   api: {
-    url: 'https://jsonplaceholder.typicode.com/'
+    url: 'http://localhost:9000/'
   }
 };
 

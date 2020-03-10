@@ -1,3 +1,5 @@
-<music-apps-search-form class="d-block mx-3 mb-3"></music-apps-search-form>
+<music-apps-search-form class="d-block mx-3 mb-3" (search)="search($event)">
+</music-apps-search-form>
 
-<music-apps-search-results class="d-block mx-3"></music-apps-search-results>
+<music-apps-search-results [results]="results" class="d-block mx-3">
+</music-apps-search-results>

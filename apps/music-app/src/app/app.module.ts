@@ -8,6 +8,8 @@ import { BlogModule } from './features/blog/blog.module';
 import { UiModule } from './shared/ui/ui.module';
 import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
+import { SecurityModule } from './security/security.module';
+
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent],
@@ -18,6 +20,7 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
     UiModule,
     /* Core */
     CoreModule,
+    SecurityModule.forRoot(),
     /* Features */
     // BlogModule,
     // MusicModule

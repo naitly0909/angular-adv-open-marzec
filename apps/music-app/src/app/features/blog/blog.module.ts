@@ -4,22 +4,23 @@ import { CommonModule } from '@angular/common';
 import { BlogRoutingModule } from './blog-routing.module';
 
 import { BlogPostComponent } from './components/blog-post/blog-post.component';
-import { BlogPostsComponent } from './containers/blog-posts/blog-posts.component';
-import { environment } from '../../../environments/environment';
-import { API_URL, BlogApiService } from '../../core/api/blog-api.service';
+import { BlogPostsComponent } from './views/blog-posts/blog-posts.component';
 import { UiModule } from '../../shared/ui/ui.module';
 import { CommentsComponent } from './components/comments/comments.component';
-import { SinglePostComponent } from './containers/single-post/single-post.component';
+import { SinglePostComponent } from './views/single-post/single-post.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
+import { PostContainerComponent } from './containers/post-container/post-container.component';
 
 @NgModule({
-  declarations: [BlogPostComponent, BlogPostsComponent, CommentsComponent, SinglePostComponent, CommentFormComponent],
-  imports: [
-    BlogRoutingModule,
-    CommonModule,
-    BlogRoutingModule,
-    UiModule
+  declarations: [
+    BlogPostComponent,
+    BlogPostsComponent,
+    CommentsComponent,
+    SinglePostComponent,
+    CommentFormComponent,
+    PostContainerComponent
   ],
+  imports: [BlogRoutingModule, CommonModule, BlogRoutingModule, UiModule],
   providers: [
     // {
     //   provide: API_URL,

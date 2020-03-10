@@ -6,10 +6,13 @@ import {
   Output,
   OnDestroy,
   OnChanges,
-  ViewEncapsulation
+  ViewEncapsulation,
+  DoCheck,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { Post } from '../../../../core/models/Post';
 import { BlogPostService } from '../../services/blog-post.service';
+import { throwMatDuplicatedDrawerError } from '@angular/material/sidenav';
 
 export interface StartCommentEvent {}
 
@@ -17,27 +20,25 @@ export interface StartCommentEvent {}
   selector: 'music-apps-blog-post',
   templateUrl: './blog-post.component.html',
   styleUrls: ['./blog-post.component.css'],
-  // viewProviders: [BlogPostService]
-  providers: [BlogPostService],
-  // encapsulation: ViewEncapsulation.Emulated
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BlogPostComponent implements OnChanges{
+export class BlogPostComponent implements DoCheck {
+
+  ngDoCheck(): void {
+    console.log('check BlogPostComponent')
+  }
+
   @Input()
   post!: Post;
-
-  @Output() startComment = new EventEmitter<StartCommentEvent>();
 
   @Input()
   mode: 'full' | 'readmore' = 'readmore';
 
-  constructor(private postService: BlogPostService) {}
-
-  ngOnChanges(): void {
-    this.postService.setPost(this.post);
-  }
+  @Output() startComment = new EventEmitter<StartCommentEvent>();
+  @Output() like = new EventEmitter<StartCommentEvent>();
 
   likePost() {
-    this.postService.like();
+    this.like.emit();
   }
 
   createComment() {

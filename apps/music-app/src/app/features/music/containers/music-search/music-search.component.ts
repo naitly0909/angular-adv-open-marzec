@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Album } from '../../../../core/models/music/Album';
 
 @Component({
   selector: 'music-apps-music-search',
@@ -6,10 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./music-search.component.scss']
 })
 export class MusicSearchComponent implements OnInit {
+  results: Album[] = [
+    {
+      id: '123',
+      href: '123',
+      name: 'Placki',
+      artists: [],
+      images: [
+        {
+          url: 'https://www.placecage.com/c/200/300',
+          height: 300,
+          width: 300
+        }
+      ]
+    }
+  ];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  search(query: string) {
+    console.log(query);
   }
-
 }

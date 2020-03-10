@@ -5,13 +5,15 @@ import { environment } from '../../environments/environment';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 import { RouterModule } from '@angular/router';
 import { UiModule } from '../shared/ui/ui.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [MainLayoutComponent],
   imports: [
     CommonModule,
     RouterModule,
-    UiModule
+    UiModule,
+    HttpClientModule
   ],
   providers: [
     {

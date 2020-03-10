@@ -10,6 +10,7 @@ export interface Post {
   id: number;
   title: string;
   body: string;
+  likes?:boolean
 }
 
 export interface FullPost extends Post {

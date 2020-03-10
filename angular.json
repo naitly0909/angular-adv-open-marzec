@@ -23,7 +23,8 @@
             "aot": true,
             "assets": [
               "apps/music-app/src/favicon.ico",
-              "apps/music-app/src/assets"
+              "apps/music-app/src/assets",
+              "apps/music-app/src/after_redirect.html"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
