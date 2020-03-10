@@ -17,6 +17,9 @@
     "music-app-e2e": {
       "tags": [],
       "implicitDependencies": ["music-app"]
+    },
+    "blog-api-blog-api": {
+      "tags": []
     }
   }
 }

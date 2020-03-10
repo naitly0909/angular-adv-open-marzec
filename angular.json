@@ -31,9 +31,7 @@
             ],
             "scripts": [],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "./node_modules/bootstrap/scss/"
-              ]
+              "includePaths": ["./node_modules/bootstrap/scss/"]
             }
           },
           "configurations": {
@@ -70,7 +68,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "music-app:build"
+            "browserTarget": "music-app:build",
+            "proxyConfig": "apps/music-app/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -91,10 +90,7 @@
               "apps/music-app/tsconfig.app.json",
               "apps/music-app/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/music-app/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/music-app/**"]
           }
         },
         "test": {
@@ -129,13 +125,63 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
+            "tsConfig": ["apps/music-app-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/music-app-e2e/**"]
+          }
+        }
+      }
+    },
+    "blog-api-blog-api": {
+      "root": "apps/blog-api/blog-api",
+      "sourceRoot": "apps/blog-api/blog-api/src",
+      "projectType": "application",
+      "prefix": "blog-api-blog-api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/blog-api/blog-api",
+            "main": "apps/blog-api/blog-api/src/main.ts",
+            "tsConfig": "apps/blog-api/blog-api/tsconfig.app.json",
+            "assets": ["apps/blog-api/blog-api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/blog-api/blog-api/src/environments/environment.ts",
+                  "with": "apps/blog-api/blog-api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "blog-api-blog-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
             "tsConfig": [
-              "apps/music-app-e2e/tsconfig.e2e.json"
+              "apps/blog-api/blog-api/tsconfig.app.json",
+              "apps/blog-api/blog-api/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/music-app-e2e/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/blog-api/blog-api/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/blog-api/blog-api/jest.config.js",
+            "tsConfig": "apps/blog-api/blog-api/tsconfig.spec.json",
+            "passWithNoTests": true
           }
         }
       }

@@ -141,3 +141,13 @@ ng g c features/music/components/album-card
 ng g c features/music/components/search-form
 ng g c features/music/components/search-results
 ng g c features/music/components/tracks-list
+
+# Express
+npm install --save-dev @nrwl/express
+ng g @nrwl/express:app blog-api --frontendProject=music-app
+
+nx serve blog-api-blog-api
+
+<!-- nx serve blog-api-blog-api >>> package.json > scripts > api -->
+npm run api
+
