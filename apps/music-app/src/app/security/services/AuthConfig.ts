@@ -1,3 +1,10 @@
+
+/*
+  placki@placki.com
+  ******
+
+*/
+
 export class AuthConfig {
   /**
    * URL for token api

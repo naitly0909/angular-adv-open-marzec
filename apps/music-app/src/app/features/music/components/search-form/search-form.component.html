@@ -1,16 +1,19 @@
-<div>
-
+<div [formGroup]="searchForm">
   <mat-form-field appearance="standard" class="w-100">
     <mat-label>Search albums...</mat-label>
 
-    <input matInput placeholder="Placeholder" #commentRef  (keyup.enter)="emitSearch(commentRef.value)"/>
-
+    <input matInput placeholder="Placeholder" formControlName="query" />
     <mat-hint>Hint</mat-hint>
 
+
     <mat-icon matPrefix>search</mat-icon>
-    <button mat-raised-button matSuffix color="primary" (click)="emitSearch(commentRef.value)">
+    <button
+      mat-raised-button
+      matSuffix
+      color="primary"
+      (click)="submit()"
+    >
       Search
     </button>
   </mat-form-field>
-
 </div>

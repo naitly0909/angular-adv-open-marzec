@@ -9,11 +9,13 @@ import { SearchFormComponent } from './components/search-form/search-form.compon
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { TracksListComponent } from './components/tracks-list/tracks-list.component';
 import { UiModule } from '../../shared/ui/ui.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [MusicSearchComponent, AlbumDetailsComponent, AlbumCardComponent, SearchFormComponent, SearchResultsComponent, TracksListComponent],
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     UiModule,
     MusicRoutingModule

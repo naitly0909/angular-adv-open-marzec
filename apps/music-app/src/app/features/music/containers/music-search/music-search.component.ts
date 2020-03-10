@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Album } from '../../../../core/models/music/Album';
+import { MusicSearchService } from 'apps/music-app/src/app/core/services/music-search.service';
 
 @Component({
   selector: 'music-apps-music-search',
@@ -23,11 +24,17 @@ export class MusicSearchComponent implements OnInit {
     }
   ];
 
-  constructor() {}
+  constructor(private service: MusicSearchService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.search('batman');
+  }
 
   search(query: string) {
     console.log(query);
+
+    this.service
+      .search(query)
+      .subscribe(results => (this.results = results.albums.items));
   }
 }
