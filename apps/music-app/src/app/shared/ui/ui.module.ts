@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [],
@@ -25,7 +26,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatInputModule,
     LayoutModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatGridListModule
   ],
   exports: [
     MatCardModule,
@@ -37,7 +39,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatInputModule,
     LayoutModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatGridListModule
   ]
 })
 export class UiModule {}
