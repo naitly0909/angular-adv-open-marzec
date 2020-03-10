@@ -1,9 +1,19 @@
+# GIT 
+git clone https://bitbucket.org/ev45ive/angular-adv-open-marzec.git
+
+cd angular-adv-open-marzec
+npm i 
+npm run serve
+
+# Visual Studio Code
+
 https://marketplace.visualstudio.com/items?itemName=Angular.ng-template
 
 > https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials
 
 https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker
 
+# Nrwl Nx Workspaces
 
 npm i -g create-nx-workspace
 create-nx-workspace
@@ -62,3 +72,72 @@ ng g c features/blog/components/comments
 ng g c features/blog/containers/single-post
 
 ng g c shared/components/PageNotFound --export
+
+
+ng g s features/blog/services/blog-post
+
+
+# ZAsoby
+
+https://jsonplaceholder.typicode.com/
+
+https://ng-bootstrap.github.io/#/components/nav/overview
+
+https://material.angular.io/components/form-field/overview#prefix-amp-suffix
+
+
+https://ng.ant.design/components/grid/en
+
+https://github.com/angular/flex-layout/wiki/Declarative-API-Overview
+
+https://material.angular.io/guide/theming
+
+https://material.io/design/color/the-color-system.html#color-theme-creation
+
+https://designsystemsrepo.com/design-systems/
+
+http://mdfostrap.blogspot.com/
+
+http://www.jsontots.com/
+
+https://material.io/resources/icons/?style=sharp
+
+https://nx.dev/angular/getting-started/nx-and-cli
+
+https://clarity.design/
+
+https://ant.design/
+
+https://www.carbondesignsystem.com/
+
+http://styleguides.io/
+
+https://angularplayground.it/
+
+https://storybook.js.org/docs/guides/guide-angular/
+
+https://nx.dev/angular/guides/modernize-storybook-angular
+
+https://blog.nrwl.io/ui-testing-with-storybook-and-nx-4b86975224c
+
+https://www.npmjs.com/package/@nrwl/storybook
+
+https://material.angular.io/guide/schematics
+
+https://blog.angular.io/schematics-an-introduction-dc1dfbc2a2b2
+
+
+# Lazy load
+https://webpack.js.org/guides/lazy-loading/
+
+# Music App
+
+ng g m features/music -m ./src/app/app.module.ts --routing 
+
+ng g c features/music/containers/music-search
+ng g c features/music/containers/album-details
+
+ng g c features/music/components/album-card
+ng g c features/music/components/search-form
+ng g c features/music/components/search-results
+ng g c features/music/components/tracks-list

@@ -10,9 +10,10 @@ import { API_URL, BlogApiService } from '../../core/api/blog-api.service';
 import { UiModule } from '../../shared/ui/ui.module';
 import { CommentsComponent } from './components/comments/comments.component';
 import { SinglePostComponent } from './containers/single-post/single-post.component';
+import { CommentFormComponent } from './components/comment-form/comment-form.component';
 
 @NgModule({
-  declarations: [BlogPostComponent, BlogPostsComponent, CommentsComponent, SinglePostComponent],
+  declarations: [BlogPostComponent, BlogPostsComponent, CommentsComponent, SinglePostComponent, CommentFormComponent],
   imports: [
     BlogRoutingModule,
     CommonModule,

@@ -1,9 +1,13 @@
 <div *ngIf="post">
-  <music-apps-blog-post [post]="post" mode="full" (startComment)="openComment = true"> </music-apps-blog-post>
 
-  <div *ngIf="openComment ">
-    Tu pan pisz!
-  </div>
+  <music-apps-blog-post
+    [post]="post"
+    mode="full"
+    (startComment)="openComment = true"
+  >
+    <music-apps-comment-form *ngIf="openComment"></music-apps-comment-form>
+
+  </music-apps-blog-post>
 
   <music-apps-comments [comments]="post.comments"> </music-apps-comments>
 </div>

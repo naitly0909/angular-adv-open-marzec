@@ -7,11 +7,24 @@ import fixture from '../fixtures/full-posts-list.json';
 
 export const API_URL = new InjectionToken<string>('Blog API Token');
 
+interface CreateCommentPayload {
+  postId: number;
+  body: string;
+}
+
 @Injectable({
   // providedIn: BlogModule,
   providedIn: 'root'
 })
 export class BlogApiService {
+  postComment(comment: CreateCommentPayload) {
+    debugger
+    throw new Error("Method not implemented.");
+  }
+  postPostLike(id: any) {
+    debugger
+    throw new Error("Method not implemented.");
+  }
   constructor(@Inject(API_URL) private api_url: string) {}
 
   fetchRecentPosts(): Observable<Post[]> {

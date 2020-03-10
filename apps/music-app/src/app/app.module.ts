@@ -19,9 +19,10 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
     /* Core */
     CoreModule,
     /* Features */
-    BlogModule,
+    // BlogModule,
+    // MusicModule
     /* App */
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

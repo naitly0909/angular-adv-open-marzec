@@ -19,7 +19,7 @@
   </mat-card-content>
 
   <mat-card-actions align="end">
-    <button mat-button color="accent">
+    <button mat-button color="accent" (click)="likePost()">
       <mat-icon>favorite</mat-icon> LIKE
     </button>
     <button mat-button><mat-icon>share</mat-icon>SHARE</button>
@@ -31,4 +31,7 @@
       <button mat-button [routerLink]="['post', post.id]">Read more</button>
     </ng-container>
   </mat-card-actions>
+
+  <ng-content></ng-content>
+
 </mat-card>

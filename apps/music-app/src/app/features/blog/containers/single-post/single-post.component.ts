@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Post } from 'apps/music-app/src/app/core/models/Post';
 import { FullPost } from '../../../../core/models/Post';
 import { ActivatedRoute } from '@angular/router';
+import { BlogPostService } from '../../services/blog-post.service';
 
 @Component({
   selector: 'music-apps-single-post',
@@ -12,8 +13,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SinglePostComponent implements OnInit {
   post?: FullPost;
+  openComment = false
 
-  constructor(private route: ActivatedRoute, private service: BlogApiService) {}
+  constructor(
+    private route: ActivatedRoute, private service: BlogApiService) {}
 
   ngOnInit(): void {
     const post_id = this.route.snapshot.paramMap.get('post_id');
