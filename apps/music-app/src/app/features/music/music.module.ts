@@ -8,12 +8,14 @@ import { AlbumCardComponent } from './components/album-card/album-card.component
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { TracksListComponent } from './components/tracks-list/tracks-list.component';
+import { UiModule } from '../../shared/ui/ui.module';
 
 
 @NgModule({
   declarations: [MusicSearchComponent, AlbumDetailsComponent, AlbumCardComponent, SearchFormComponent, SearchResultsComponent, TracksListComponent],
   imports: [
     CommonModule,
+    UiModule,
     MusicRoutingModule
   ]
 })

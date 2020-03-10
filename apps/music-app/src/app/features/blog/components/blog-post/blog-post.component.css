@@ -1,0 +1,20 @@
+/* ::ng-deep p{
+  color:hotpink;
+} */
+
+:host(.promoted){
+  border:2px solid red;
+  border-radius:2px;
+}
+
+:host(.promoted) mat-card-title{
+  color: red;
+}
+
+:host-context(.dark-theme) p, mat-card-title{
+  color:white;
+}
+
+:host-context(.dark-theme) mat-card{
+  background-color:black;
+}

@@ -5,7 +5,8 @@ import {
   EventEmitter,
   Output,
   OnDestroy,
-  OnChanges
+  OnChanges,
+  ViewEncapsulation
 } from '@angular/core';
 import { Post } from '../../../../core/models/Post';
 import { BlogPostService } from '../../services/blog-post.service';
@@ -17,7 +18,8 @@ export interface StartCommentEvent {}
   templateUrl: './blog-post.component.html',
   styleUrls: ['./blog-post.component.css'],
   // viewProviders: [BlogPostService]
-  providers: [BlogPostService]
+  providers: [BlogPostService],
+  // encapsulation: ViewEncapsulation.Emulated
 })
 export class BlogPostComponent implements OnChanges{
   @Input()

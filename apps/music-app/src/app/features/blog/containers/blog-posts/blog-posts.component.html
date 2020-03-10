@@ -2,8 +2,12 @@
 
 <div *ngIf="posts as results; else notPostsMessage">
   <div *ngFor="let post of results; index as i">
-    <music-apps-blog-post [post]="post" class="d-block mb-3">
+
+    <music-apps-blog-post [post]="post"
+                          [class.promoted]="i == 0"
+                          class="d-block mb-3">
     </music-apps-blog-post>
+
   </div>
 </div>
 
