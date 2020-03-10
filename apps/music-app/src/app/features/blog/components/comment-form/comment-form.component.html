@@ -1,14 +1,11 @@
-
 <mat-form-field appearance="standard" class="w-100">
-
   <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
 
   <mat-label>Standard form field</mat-label>
-  <textarea matInput placeholder="Placeholder" #commentRef ></textarea>
+  <textarea matInput placeholder="Placeholder" #commentRef></textarea>
   <mat-hint>Hint</mat-hint>
 
-  <button mat-icon-button matSuffix (click)="sendComment(commentRef.value)">Send</button>
-
-
-
+  <button mat-icon-button matSuffix (click)="sendComment(commentRef.value)">
+    Send
+  </button>
 </mat-form-field>
