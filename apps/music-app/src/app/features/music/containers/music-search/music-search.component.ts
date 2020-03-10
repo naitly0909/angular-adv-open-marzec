@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Album } from '../../../../core/models/music/Album';
 import { MusicSearchService } from 'apps/music-app/src/app/core/services/music-search.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'music-apps-music-search',
@@ -23,6 +24,7 @@ export class MusicSearchComponent implements OnInit {
       ]
     }
   ];
+  message = '';
 
   constructor(private service: MusicSearchService) {}
 
@@ -33,8 +35,9 @@ export class MusicSearchComponent implements OnInit {
   search(query: string) {
     console.log(query);
 
-    this.service
-      .search(query)
-      .subscribe(results => (this.results = results.albums.items));
+    this.service.search(query).subscribe({
+      next: results => (this.results = results),
+      error: error => (this.message = error.message)
+    });
   }
 }
