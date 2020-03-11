@@ -24,7 +24,6 @@ export class TodoDetailsComponent implements OnInit {
   ngOnInit(): void {}
 
   toggleCompleted() {
-    this.todo.completed = !this.todo.completed;
     this.todoChange.emit(this.todo);
   }
 }

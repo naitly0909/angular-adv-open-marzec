@@ -29,8 +29,7 @@ export class TodoItemComponent implements OnInit, AfterViewChecked {
   constructor(private service: TodosService) {}
 
   toggleCompleted() {
-    this.todo.completed = !this.todo.completed;
-    this.service.updateTodo(this.todo);
+    this.service.toggleTodo(this.todo);
   }
 
   ngOnInit(): void {}

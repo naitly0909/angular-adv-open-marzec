@@ -1,40 +1,61 @@
 import { Injectable } from '@angular/core';
 import { Todo } from '../../../core/models/Todo';
 import { BehaviorSubject } from 'rxjs';
+import { Store } from '@ngrx/store';
+import {
+  toggleTodo,
+  selectTodo,
+  loadTodos,
+  loadTodosSuccess
+} from '../actions/todo.actions';
+import {
+  selectTodosList,
+  selectSelectedTodo
+} from '../selectors/todo.selectors';
+import { State } from '../reducers';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodosService {
-  todos = new BehaviorSubject<Todo[]>([
-    {
-      userId: 1,
-      id: 1,
-      title: 'delectus aut A',
-      completed: false
-    },
-    {
-      userId: 1,
-      id: 2,
-      title: 'delectus aut B',
-      completed: false
-    },
-    {
-      userId: 1,
-      id: 3,
-      title: 'delectus aut C',
-      completed: false
-    }
-  ]);
-  selected = new BehaviorSubject<Todo | null>(null);
 
-  updateTodo(todo: Todo) {
-    const copy = { ...todo };
-    this.selected.next(copy);
-    this.todos.next(
-      this.todos.getValue().map(t => (t.id == todo.id ? copy : t))
+  todos = this.store.select(selectTodosList)
+  selected = this.store.select(selectSelectedTodo);
+
+  toggleTodo(todo: Todo) {
+    this.store.dispatch(
+      toggleTodo({ id: todo.id, completed: !todo.completed })
     );
   }
 
-  constructor() {}
+  selectTodo(id: Todo['id']) {
+    this.store.dispatch(selectTodo({ id }));
+  }
+
+  constructor(private store: Store<State>) {
+    this.store.dispatch(
+      loadTodosSuccess({
+        payload: [
+          {
+            userId: 1,
+            id: 1,
+            title: 'delectus aut A',
+            completed: false
+          },
+          {
+            userId: 1,
+            id: 2,
+            title: 'delectus aut B',
+            completed: false
+          },
+          {
+            userId: 1,
+            id: 3,
+            title: 'delectus aut C',
+            completed: false
+          }
+        ]
+      })
+    );
+  }
 }

@@ -9,7 +9,7 @@
   </div>
   <div class="col" *ngIf="selected | async">
     <music-apps-todo-details
-      (todoChange)="updateTodo($event)"
+      (todoChange)="toggleTodo($event)"
       [todo]="selected | async"
     ></music-apps-todo-details>
   </div>

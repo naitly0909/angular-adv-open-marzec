@@ -19,6 +19,13 @@ import * as fromTodo from './reducers';
     TodoDetailsComponent,
     CounterComponent
   ],
-  imports: [CommonModule, TodosRoutingModule,UiModule, StoreModule.forFeature(fromTodo.todoFeatureKey, fromTodo.reducers, { metaReducers: fromTodo.metaReducers })]
+  imports: [
+    CommonModule,
+    TodosRoutingModule,
+    UiModule,
+    StoreModule.forFeature(fromTodo.todoFeatureKey, fromTodo.reducers, {
+      metaReducers: fromTodo.metaReducers
+    })
+  ]
 })
 export class TodosModule {}

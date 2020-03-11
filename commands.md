@@ -179,4 +179,6 @@ ng generate @ngrx/schematics:feature features/todos/Todo --flat false --creators
 # Feature module
 $ ng generate @ngrx/schematics:store features/todos/Todo --module todos.module.ts
 
-$ ng generate @ngrx/schematics:feature features/todos/Todo --module todos.module.ts  --group --creators
+$ ng generate @ngrx/schematics:feature features/todos/Todo --module features/todos/todos.module.ts  --group --creators --reducers reducers/index.ts
+
+

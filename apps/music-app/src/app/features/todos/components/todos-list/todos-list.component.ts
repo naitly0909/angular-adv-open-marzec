@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Todo } from '../../../../core/models/Todo';
 
 @Component({
   selector: 'music-apps-todos-list',
   templateUrl: './todos-list.component.html',
-  styleUrls: ['./todos-list.component.scss']
+  styleUrls: ['./todos-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodosListComponent implements OnInit {
   @Input() todos: Todo[] = [];

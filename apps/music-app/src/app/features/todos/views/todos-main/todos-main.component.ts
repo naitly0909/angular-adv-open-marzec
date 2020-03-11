@@ -14,12 +14,11 @@ export class TodosMainComponent implements OnInit {
   constructor(private service: TodosService) {}
 
   select(todo: Todo) {
-    this.service.selected.next(todo);
+    this.service.selectTodo(todo.id)
   }
 
-  updateTodo(todo: Todo) {
-    todo.completed = !todo.completed;
-    this.service.updateTodo(todo);
+  toggleTodo(todo: Todo) {
+    this.service.toggleTodo(todo)
   }
 
   ngOnInit(): void {}
