@@ -11,35 +11,15 @@ import { Subscription, Subject } from 'rxjs';
   styleUrls: ['./music-search.component.scss']
 })
 export class MusicSearchComponent implements OnInit {
-  results: Album[] = [];
+  results$ = this.service.getAlbums();
+  query$ = this.service.queries;
   message = '';
-  query = '';
 
   constructor(private service: MusicSearchService) {}
 
-  ngOnInit(): void {
-    this.service.queries
-      .pipe(takeUntil(this.destroySignal))
-      .subscribe(query => {
-        this.query = query;
-      });
-
-    this.service
-      .getAlbums()
-      .pipe(takeUntil(this.destroySignal))
-      .subscribe({
-        next: results => (this.results = results),
-        error: error => (this.message = error.message)
-      });
-  }
+  ngOnInit(): void {}
 
   search(query: string) {
     this.service.search(query);
-  }
-
-  destroySignal = new Subject();
-
-  ngOnDestroy() {
-    this.destroySignal.next();
   }
 }

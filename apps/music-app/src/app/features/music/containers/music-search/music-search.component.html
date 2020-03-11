@@ -1,7 +1,15 @@
-<music-apps-search-form class="d-block mx-3 mb-3"
-[query]="query" (search)="search($event)">
+
+
+<music-apps-search-form
+  class="d-block mx-3 mb-3"
+  [query]="query$ | async"
+  (search)="search($event)"
+>
 </music-apps-search-form>
 
 {{ message }}
-<music-apps-search-results [results]="results" class="d-block mx-3">
+
+<p>Found {{ (results$ | async)?.length }} results </p>
+
+<music-apps-search-results [results]="results$ | async" class="d-block mx-3">
 </music-apps-search-results>

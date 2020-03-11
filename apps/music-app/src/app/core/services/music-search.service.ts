@@ -59,7 +59,7 @@ export class MusicSearchService {
   private queryChanges = new BehaviorSubject<string>('batman');
 
   constructor(private http: HttpClient) {
-    (window as any).subject = this.queryChanges
+    (window as any).subject = this.albumChanges
 
     this.queryChanges
       .pipe(
