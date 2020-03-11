@@ -7,20 +7,14 @@
 
 {{ message }}
 
-<ng-container *ngIf="results$ | async as results">
+<button (click)="hide = !hide">togle</button>
+<ng-container *ngIf="hide">
+  <ng-container *ngIf="results$ | async as results">
+    <p>Found {{ results?.length }} results</p>
 
-  <p>Found {{ results?.length }} results</p>
-
-  <music-apps-search-results [results]="results" class="d-block mx-3">
-  </music-apps-search-results>
-
+    <music-apps-search-results [results]="results" class="d-block mx-3">
+    </music-apps-search-results>
+  </ng-container>
 </ng-container>
 
-<ng-container *ngIf="results$ | async as results">
-
-  <p>Found {{ results?.length }} results</p>
-
-  <music-apps-search-results [results]="results" class="d-block mx-3">
-  </music-apps-search-results>
-
-</ng-container>
+<button (click)="connect()">Connect</button>
