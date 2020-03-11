@@ -18,28 +18,27 @@ export class MusicSearchComponent implements OnInit {
   constructor(private service: MusicSearchService) {}
 
   ngOnInit(): void {
-    this.sub1 = this.service.queries.subscribe(query => {
-      this.query = query;
-    });
+    this.sub.add(
+      this.service.queries.subscribe(query => {
+        this.query = query;
+      })
+    );
 
-    this.sub2 = this.service
-      .getAlbums()
-      // .pipe(tap(console.log))
-      .subscribe({
+    this.sub.add(
+      this.service.getAlbums().subscribe({
         next: results => (this.results = results),
         error: error => (this.message = error.message)
-      });
+      })
+    );
   }
 
   search(query: string) {
     this.service.search(query);
   }
 
-  sub1!: Subscription;
-  sub2!: Subscription;
+  sub = new Subscription();
 
   ngOnDestroy() {
-    this.sub1.unsubscribe();
-    this.sub2.unsubscribe();
+    this.sub.unsubscribe();
   }
 }
