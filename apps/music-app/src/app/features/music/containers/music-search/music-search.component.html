@@ -1,5 +1,3 @@
-
-
 <music-apps-search-form
   class="d-block mx-3 mb-3"
   [query]="query$ | async"
@@ -9,7 +7,20 @@
 
 {{ message }}
 
-<p>Found {{ (results$ | async)?.length }} results </p>
+<ng-container *ngIf="results$ | async as results">
 
-<music-apps-search-results [results]="results$ | async" class="d-block mx-3">
-</music-apps-search-results>
+  <p>Found {{ results?.length }} results</p>
+
+  <music-apps-search-results [results]="results" class="d-block mx-3">
+  </music-apps-search-results>
+
+</ng-container>
+
+<ng-container *ngIf="results$ | async as results">
+
+  <p>Found {{ results?.length }} results</p>
+
+  <music-apps-search-results [results]="results" class="d-block mx-3">
+  </music-apps-search-results>
+
+</ng-container>
