@@ -2,7 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AlbumsResponse } from '../models/music/AlbumsResponse';
 import { AuthService } from '../../security/services/auth.service';
-import { map, catchError, switchMapTo, startWith, mergeAll, mergeMap, concatAll, exhaust, switchAll, concatMap, switchMap, exhaustMap } from 'rxjs/operators';
+import {
+  map,
+  catchError,
+  switchMapTo,
+  startWith,
+  mergeAll,
+  mergeMap,
+  concatAll,
+  exhaust,
+  switchAll,
+  concatMap,
+  switchMap,
+  exhaustMap
+} from 'rxjs/operators';
 import {
   throwError,
   EMPTY,
@@ -46,25 +59,18 @@ export class MusicSearchService {
   private queryChanges = new BehaviorSubject<string>('batman');
 
   constructor(private http: HttpClient) {
-    const o: Observable<Album[]> = this.queryChanges
+    this.queryChanges
       .pipe(
-        switchMap(query => this.requestAlbums(query)),
-        // mergeMap(query => this.requestAlbums(query)),
-        // concatMap(query => this.requestAlbums(query)),
-        // exhaustMap(query => this.requestAlbums(query)),
-        // mergeAll(),
-        // concatAll(),
-        // switchAll(),
-        // exhaust(),
-        o => o,
+        switchMap(
+          query => this.requestAlbums(query)
+          /* .pipe(catchError(),) */
+        ),
         map(res => res.albums.items)
       )
-
-
-      // .subscribe({
-      //   next: albums => this.albumChanges.next(albums),
-      //   error: error => this.errorNotifications.next(error)
-      // });
+      .subscribe({
+        next: albums => this.albumChanges.next(albums),
+        error: error => this.errorNotifications.next(error)
+      });
   }
 
   api_url = 'https://api.spotify.com/v1/search';
