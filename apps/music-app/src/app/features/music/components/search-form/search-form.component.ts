@@ -15,10 +15,13 @@ import {
   filter,
   distinctUntilChanged,
   debounceTime,
-  tap
+  // combineLatest, // deprecated
+  tap,
+  map,
+  withLatestFrom
 } from 'rxjs/operators';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { Observable, from, Subject } from 'rxjs';
+import { Observable, from, Subject, combineLatest } from 'rxjs';
 
 const censor = (control: AbstractControl): ValidationErrors | null => {
   const badword = 'batman';
@@ -37,7 +40,6 @@ const asyncCensor = (
   const result = censor(control);
 
   return new Observable(observer => {
-
     const handler = setTimeout(() => {
       console.log(control.value, result);
       observer.next(result);
@@ -74,13 +76,15 @@ export class SearchFormComponent implements OnInit {
   constructor(private _fb: FormBuilder) {
     const values = this.searchForm.get('query')!.valueChanges;
 
-    const validValues = values.pipe(
-      // tap(value => {
-      //   console.log(value, this.searchForm.valid)
-      // }),
-      // filter(() => this.searchForm.valid),
+    const validChange = this.searchForm
+      .get('query')!
+      .statusChanges.pipe(filter(s => s === 'VALID'));
+
+    // const validValues = combineLatest(validChange, values)
+    const validValues = validChange.pipe(
+      withLatestFrom(values),
+      map(([valid, value]) => value),
       debounceTime(400),
-      filter(q => q.length >= 3),
       distinctUntilChanged()
     );
 
