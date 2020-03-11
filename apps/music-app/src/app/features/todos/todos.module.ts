@@ -10,6 +10,8 @@ import { UiModule } from '../../shared/ui/ui.module';
 import { CounterComponent } from './views/counter/counter.component';
 import { StoreModule } from '@ngrx/store';
 import * as fromTodo from './reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { TodoEffects } from './effects/todo.effects';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import * as fromTodo from './reducers';
     UiModule,
     StoreModule.forFeature(fromTodo.todoFeatureKey, fromTodo.reducers, {
       metaReducers: fromTodo.metaReducers
-    })
+    }),
+    EffectsModule.forFeature([TodoEffects])
   ]
 })
 export class TodosModule {}

@@ -182,3 +182,11 @@ $ ng generate @ngrx/schematics:store features/todos/Todo --module todos.module.t
 $ ng generate @ngrx/schematics:feature features/todos/Todo --module features/todos/todos.module.ts  --group --creators --reducers reducers/index.ts
 
 
+
+# Ankieta
+
+ankieta:
+https://bit.ly/2T ZR 6oj
+
+
+https://www.linkedin.com/in/mateuszkulesza/

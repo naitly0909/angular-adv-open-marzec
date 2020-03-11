@@ -18,8 +18,7 @@ import { State } from '../reducers';
   providedIn: 'root'
 })
 export class TodosService {
-
-  todos = this.store.select(selectTodosList)
+  todos = this.store.select(selectTodosList);
   selected = this.store.select(selectSelectedTodo);
 
   toggleTodo(todo: Todo) {
@@ -32,7 +31,7 @@ export class TodosService {
     this.store.dispatch(selectTodo({ id }));
   }
 
-  constructor(private store: Store<State>) {
+  constructor(public store: Store<State>) {
     this.store.dispatch(
       loadTodosSuccess({
         payload: [

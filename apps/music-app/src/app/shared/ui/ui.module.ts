@@ -46,4 +46,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatCheckboxModule
   ]
 })
-export class UiModule {}
+export class UiModule {
+  static StoreModule: any[] | Type<any> | ModuleWithProviders<{}>;
+}
