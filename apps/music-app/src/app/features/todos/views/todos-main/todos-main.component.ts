@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { of } from 'rxjs';
 import { Todo } from 'apps/music-app/src/app/core/models/Todo';
+import { TodosService } from '../../services/todos.service';
 
 @Component({
   selector: 'music-apps-todos-main',
@@ -8,34 +8,18 @@ import { Todo } from 'apps/music-app/src/app/core/models/Todo';
   styleUrls: ['./todos-main.component.scss']
 })
 export class TodosMainComponent implements OnInit {
-  todos = [
-    {
-      userId: 1,
-      id: 1,
-      title: 'delectus aut A',
-      completed: false
-    },
-    {
-      userId: 1,
-      id: 2,
-      title: 'delectus aut B',
-      completed: false
-    },
-    {
-      userId: 1,
-      id: 3,
-      title: 'delectus aut C',
-      completed: false
-    }
-  ] as Todo[];
+  todos = this.service.todos;
+  selected = this.service.selected;
 
-  selected: Todo | null = null;
+  constructor(private service: TodosService) {}
 
-  constructor() {
-    setInterval(() => {
-      this.todos.push(this.todos.shift()!);
-      this.todos = this.todos.map(t => ({ ...t }));
-    }, 1000);
+  select(todo: Todo) {
+    this.service.selected.next(todo);
+  }
+
+  updateTodo(todo: Todo) {
+    todo.completed = !todo.completed;
+    this.service.updateTodo(todo);
   }
 
   ngOnInit(): void {}

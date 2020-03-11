@@ -2,9 +2,8 @@
   matLine
   [ngStyle]="{ 'text-decoration': todo.completed ? 'line-through' : '' }"
 >
-  <mat-checkbox
-    [checked]="todo.completed"
-    (change)="todo.completed = !todo.completed"
+  <mat-checkbox [checked]="todo.completed"
+   (change)="toggleCompleted()"
     >Completed</mat-checkbox
   >
   {{ todo.title }}

@@ -14,7 +14,7 @@
   <mat-list-item>
     <p matLine>
       <!-- <span>Completed</span> -->
-      <mat-checkbox [checked]="todo.completed" (change)="todo.completed = !todo.completed">Completed</mat-checkbox>
+      <mat-checkbox [checked]="todo.completed" (change)="toggleCompleted()">Completed</mat-checkbox>
     </p>
   </mat-list-item>
 </mat-list>

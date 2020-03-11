@@ -2,9 +2,15 @@
 
 <div class="row">
   <div class="col">
-    <music-apps-todos-list [todos]="todos" (select)="selected = $event"></music-apps-todos-list>
+    <music-apps-todos-list
+      [todos]="todos | async"
+      (select)="select($event)"
+    ></music-apps-todos-list>
   </div>
-  <div class="col" *ngIf="selected">
-    <music-apps-todo-details [todo]="selected"></music-apps-todo-details>
+  <div class="col" *ngIf="selected | async">
+    <music-apps-todo-details
+      (todoChange)="updateTodo($event)"
+      [todo]="selected | async"
+    ></music-apps-todo-details>
   </div>
 </div>
