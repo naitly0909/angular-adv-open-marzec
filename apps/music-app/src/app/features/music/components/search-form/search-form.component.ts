@@ -76,6 +76,8 @@ export class SearchFormComponent implements OnInit {
   constructor(private _fb: FormBuilder) {
     const values = this.searchForm.get('query')!.valueChanges;
 
+    (window as any).form = this.searchForm;
+
     const validChange = this.searchForm
       .get('query')!
       .statusChanges.pipe(filter(s => s === 'VALID'));

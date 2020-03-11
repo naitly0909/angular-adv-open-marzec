@@ -33,7 +33,6 @@ export class MusicSearchComponent implements OnInit {
   }
 
   search(query: string) {
-    console.log(query);
 
     this.service.search(query).subscribe({
       next: results => (this.results = results),

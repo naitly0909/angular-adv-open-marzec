@@ -10,10 +10,11 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { TracksListComponent } from './components/tracks-list/tracks-list.component';
 import { UiModule } from '../../shared/ui/ui.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SplitSearchComponent } from './views/split-search/split-search.component';
 
 
 @NgModule({
-  declarations: [MusicSearchComponent, AlbumDetailsComponent, AlbumCardComponent, SearchFormComponent, SearchResultsComponent, TracksListComponent],
+  declarations: [MusicSearchComponent, AlbumDetailsComponent, AlbumCardComponent, SearchFormComponent, SearchResultsComponent, TracksListComponent, SplitSearchComponent],
   imports: [
     ReactiveFormsModule,
     CommonModule,
