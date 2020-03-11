@@ -162,6 +162,11 @@ ng g c src/app/features/todos/components/todo-details
 
 
 # NgRx
+npm i --save @ngrx/schematics
 npm install @ngrx/{store,effects,entity,store-devtools} --save
 
 ng generate @ngrx/schematics:store State --root --module app.module.ts
+
+
+# Reducer
+ng generate reducer User --reducers reducers/index.ts
