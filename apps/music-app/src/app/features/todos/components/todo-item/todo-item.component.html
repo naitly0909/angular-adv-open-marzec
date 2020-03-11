@@ -1,0 +1,15 @@
+<h3
+  matLine
+  [ngStyle]="{ 'text-decoration': todo.completed ? 'line-through' : '' }"
+>
+  <mat-checkbox
+    [checked]="todo.completed"
+    (change)="todo.completed = !todo.completed"
+    >Completed</mat-checkbox
+  >
+  {{ todo.title }}
+</h3>
+<p matLine>
+  <!-- <span> {{message.subject}} </span> -->
+  <!-- <input type="checkbox" [checked]="todo.completed"> -->
+</p>

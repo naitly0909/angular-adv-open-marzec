@@ -1,0 +1,10 @@
+<p>todos-main works!</p>
+
+<div class="row">
+  <div class="col">
+    <music-apps-todos-list [todos]="todos | async" (select)="selected = $event"></music-apps-todos-list>
+  </div>
+  <div class="col" *ngIf="selected">
+    <music-apps-todo-details [todo]="selected"></music-apps-todo-details>
+  </div>
+</div>

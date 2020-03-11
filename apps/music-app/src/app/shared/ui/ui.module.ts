@@ -12,6 +12,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [],
@@ -27,7 +28,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     LayoutModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCheckboxModule
   ],
   exports: [
     MatCardModule,
@@ -40,7 +42,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     LayoutModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCheckboxModule
   ]
 })
 export class UiModule {}

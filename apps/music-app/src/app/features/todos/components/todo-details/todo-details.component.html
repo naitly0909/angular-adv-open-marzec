@@ -1,0 +1,20 @@
+<mat-list>
+  <mat-list-item>
+    <p matLine>
+      <span>Title: </span>
+      <span>{{ todo.title }}</span>
+    </p>
+  </mat-list-item>
+  <mat-list-item>
+    <p matLine>
+      <span>Asignee: </span>
+      <span>{{ todo.user?.name }}</span>
+    </p>
+  </mat-list-item>
+  <mat-list-item>
+    <p matLine>
+      <!-- <span>Completed</span> -->
+      <mat-checkbox [checked]="todo.completed" (change)="todo.completed = !todo.completed">Completed</mat-checkbox>
+    </p>
+  </mat-list-item>
+</mat-list>

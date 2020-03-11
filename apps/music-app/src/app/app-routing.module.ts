@@ -2,12 +2,18 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes, ROUTES } from '@angular/router';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { MainLayoutComponent } from './core/components/main-layout/main-layout.component';
+import { TodosModule } from './features/todos/todos.module';
 
 const routes: Routes = [
   {
-    path:'',
+    path: '',
     component: MainLayoutComponent,
-    children:[
+    children: [
+      {
+        path: 'todos',
+        loadChildren: () =>
+          import('./features/todos/todos.module').then(f => f.TodosModule)
+      },
       {
         path: 'blog',
         loadChildren: () =>
@@ -17,7 +23,7 @@ const routes: Routes = [
         path: 'music',
         loadChildren: () =>
           import('./features/music/music.module').then(f => f.MusicModule)
-      },
+      }
     ]
   },
   {
