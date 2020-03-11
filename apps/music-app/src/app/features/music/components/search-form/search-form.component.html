@@ -17,7 +17,11 @@
       Minimum {{ error.requiredLength }} characters
     </mat-error>
 
-    <mat-hint>Hint</mat-hint>
+    <mat-error *ngIf="searchForm.get('query')!.getError('censor') as error">
+      Cannot contain "{{ error.badword }}"
+    </mat-error>
+
+    <mat-hint *ngIf="searchForm.pending">Please wait... Validating...</mat-hint>
 
     <mat-icon matPrefix>search</mat-icon>
     <button mat-icon-button matSuffix color="primary" (click)="submit()">

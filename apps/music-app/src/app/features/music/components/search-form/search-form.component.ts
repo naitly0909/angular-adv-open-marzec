@@ -5,7 +5,11 @@ import {
   FormBuilder,
   Validators,
   FormGroupDirective,
-  NgForm
+  NgForm,
+  ValidatorFn,
+  AbstractControl,
+  ValidationErrors,
+  AsyncValidatorFn
 } from '@angular/forms';
 import {
   filter,
@@ -14,6 +18,37 @@ import {
   tap
 } from 'rxjs/operators';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { Observable, from, Subject } from 'rxjs';
+
+const censor = (control: AbstractControl): ValidationErrors | null => {
+  const badword = 'batman';
+
+  return ('' + control.value).includes(badword)
+    ? {
+        censor: { badword }
+      }
+    : null;
+};
+
+const asyncCensor = (
+  control: AbstractControl
+): Observable<ValidationErrors | null> => {
+  // return this.http.get('..',value).pipe(map(res=>errors | null))
+  const result = censor(control);
+
+  return new Observable(observer => {
+
+    const handler = setTimeout(() => {
+      console.log(control.value, result);
+      observer.next(result);
+      observer.complete();
+    }, 2000);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  });
+};
 
 @Component({
   selector: 'music-apps-search-form',
@@ -21,11 +56,18 @@ import { ErrorStateMatcher } from '@angular/material/core';
   styleUrls: ['./search-form.component.scss']
 })
 export class SearchFormComponent implements OnInit {
-  searchForm = this._fb.group({
-    // query: new FormControl('batman',[],[])
-    query: ['batman', [Validators.required, Validators.minLength(3)], []],
-    type: ['album']
-  });
+  searchForm = this._fb.group(
+    {
+      // query: new FormControl('batman',[],[])
+      query: [
+        'batman',
+        [Validators.required, Validators.minLength(3)],
+        [asyncCensor]
+      ],
+      type: ['album']
+    },
+    []
+  );
 
   @Output() search = new EventEmitter<string>();
 
