@@ -151,3 +151,17 @@ nx serve blog-api-blog-api
 <!-- nx serve blog-api-blog-api >>> package.json > scripts > api -->
 npm run api
 
+
+
+ng g m src/app/features/todos --routing true 
+ng g s src/app/features/todos/services/todos 
+ng g c src/app/features/todos/views/todos-main
+ng g c src/app/features/todos/components/todos-list
+ng g c src/app/features/todos/components/todo-item
+ng g c src/app/features/todos/components/todo-details
+
+
+# NgRx
+npm install @ngrx/{store,effects,entity,store-devtools} --save
+
+ng generate @ngrx/schematics:store State --root --module app.module.ts
