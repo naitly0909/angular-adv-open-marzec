@@ -10,22 +10,24 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./music-search.component.scss']
 })
 export class MusicSearchComponent implements OnInit {
-  results: Album[] = [
-
-  ];
+  results: Album[] = [];
   message = '';
+  query = '';
 
   constructor(private service: MusicSearchService) {}
 
   ngOnInit(): void {
-    // this.search('batman');
-
-    this.service.getAlbums()
-    .pipe(tap(console.log))
-    .subscribe({
-      next: results => (this.results = results),
-      error: error => (this.message = error.message)
+    this.service.queries.subscribe(query => {
+      this.query = query;
     });
+
+    this.service
+      .getAlbums()
+      .pipe(tap(console.log))
+      .subscribe({
+        next: results => (this.results = results),
+        error: error => (this.message = error.message)
+      });
   }
 
   search(query: string) {

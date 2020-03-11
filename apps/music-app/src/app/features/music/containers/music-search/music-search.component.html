@@ -1,4 +1,5 @@
-<music-apps-search-form class="d-block mx-3 mb-3" (search)="search($event)">
+<music-apps-search-form class="d-block mx-3 mb-3"
+[query]="query" (search)="search($event)">
 </music-apps-search-form>
 
 {{ message }}

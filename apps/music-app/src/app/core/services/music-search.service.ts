@@ -26,26 +26,8 @@ type SearchParams = {
   providedIn: 'root'
 })
 export class MusicSearchService {
-  constructor(private http: HttpClient) {}
-
-  api_url = 'https://api.spotify.com/v1/search';
-
-  search(query: string) {
-    this.http
-      .get<AlbumsResponse>(this.api_url, {
-        params: {
-          query: query,
-          type: 'album'
-        } as SearchParams
-      })
-      .pipe(map(res => res.albums.items))
-      .subscribe({
-        next: albums => this.albumChanges.next(albums),
-        error: error => this.errorNotifications.next(error)
-      });
-  }
-  errorNotifications = new ReplaySubject<Error>(3, 5_000);
-  albumChanges = new BehaviorSubject<Album[]>([
+  private errorNotifications = new ReplaySubject<Error>(3, 5_000);
+  private albumChanges = new BehaviorSubject<Album[]>([
     {
       id: '123',
       href: '123',
@@ -60,15 +42,37 @@ export class MusicSearchService {
       ]
     }
   ]);
+  private queryChanges = new BehaviorSubject<string>('batman');
+  public queries = this.queryChanges.asObservable();
+
+  constructor(private http: HttpClient) {}
+
+  api_url = 'https://api.spotify.com/v1/search';
+
+  search(query: string) {
+    this.queryChanges.next(query);
+
+    this.requestAlbums(query)
+      .pipe(map(res => res.albums.items))
+      .subscribe({
+        next: albums => this.albumChanges.next(albums),
+        error: error => this.errorNotifications.next(error)
+      });
+  }
 
   albums: Album[] = [];
 
-  getAlbums() {
-    // return merge( this.albumChanges.asObservable(), of(this.albums));
-    // return concat( of(this.albums),  this.albumChanges.asObservable());
-    // return this.albumChanges.pipe(startWith(this.albums));
-    return this.albumChanges; //.pipe(startWith(this.albums));
+  private requestAlbums(query: string) {
+    return this.http
+      .get<AlbumsResponse>(this.api_url, {
+        params: {
+          query: query,
+          type: 'album'
+        } as SearchParams
+      });
+  }
 
-    // return of([]);
+  getAlbums() {
+    return this.albumChanges;
   }
 }

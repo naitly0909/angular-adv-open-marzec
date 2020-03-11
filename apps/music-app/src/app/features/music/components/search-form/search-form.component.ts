@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -70,6 +70,12 @@ export class SearchFormComponent implements OnInit {
     },
     []
   );
+
+  @Input() set query(q: string) {
+    (this.searchForm.get('query') as FormControl)!.setValue(q, {
+      emitEvent: false
+    });
+  }
 
   @Output() search = new EventEmitter<string>();
 
