@@ -26,15 +26,11 @@ export class MusicSearchComponent implements OnInit {
   query$ = this.service.queries;
   message = '';
 
-  results$ = this.service.getAlbums().asObservable() //.pipe(shareReplay());
+  results$ = this.service.getAlbums().pipe(shareReplay());
 
   constructor(private service: MusicSearchService) {}
 
   ngOnInit(): void {}
-
-  connect() {
-    this.results$ = this.service.getAlbums().pipe(tap(console.log)) //.pipe(shareReplay());
-  }
 
   search(query: string) {
     this.service.search(query);
