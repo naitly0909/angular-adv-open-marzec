@@ -25,7 +25,7 @@ export class AuthService {
         client_id,
         response_type,
         redirect_uri,
-        show_dialog: 'true'
+        // show_dialog: 'true'
       }
     });
 

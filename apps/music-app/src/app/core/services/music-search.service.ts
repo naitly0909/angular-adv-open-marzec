@@ -14,7 +14,7 @@ type SearchParams = {
   providedIn: 'root'
 })
 export class MusicSearchService {
-  constructor(private auth: AuthService, private http: HttpClient) {}
+  constructor( private http: HttpClient) {}
 
   api_url = 'https://api.spotify.com/v1/search';
 
@@ -25,25 +25,9 @@ export class MusicSearchService {
           query: q,
           type: 'album'
         } as SearchParams,
-        headers: {
-          Authorization: `Bearer ${this.auth.getToken()}`
-        }
       })
       .pipe(
-        map(res => res.albums.items),
-        // https://www.learnrxjs.io/learn-rxjs/operators/error_handling/
-        catchError((error, caught) => {
-          if (error instanceof HttpErrorResponse) {
-            if (error.status == 401) {
-              this.auth.authorize();
-            }
-            return throwError(error.error.error.message);
-          }
-          // return []
-          // return EMPTY
-          // return NEVER
-          return throwError(error.message);
-        })
-      );
+        map(res => res.albums.items)
+      )
   }
 }

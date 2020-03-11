@@ -25,12 +25,12 @@ export class SearchFormComponent implements OnInit {
       distinctUntilChanged()
     );
 
-    validValues.subscribe(q => this.submit(q));
+    validValues.subscribe(q => this.search.emit(q));
   }
 
   ngOnInit(): void {}
 
-  submit(q: string) {
-    this.search.emit(q);
+  submit() {
+    this.search.emit(this.searchForm.get('query')!.value);
   }
 }
