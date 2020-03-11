@@ -2,8 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AlbumsResponse } from '../models/music/AlbumsResponse';
 import { AuthService } from '../../security/services/auth.service';
-import { map, catchError, switchMapTo } from 'rxjs/operators';
-import { throwError, EMPTY, NEVER, timer, of, Subject } from 'rxjs';
+import { map, catchError, switchMapTo, startWith } from 'rxjs/operators';
+import {
+  throwError,
+  EMPTY,
+  NEVER,
+  timer,
+  of,
+  Subject,
+  merge,
+  concat
+} from 'rxjs';
 import { Album } from '../models/music/Album';
 
 type SearchParams = {
@@ -29,15 +38,23 @@ export class MusicSearchService {
       })
       .pipe(map(res => res.albums.items))
       .subscribe({
-        next: albums => this.albumChanges.next(albums),
+        next: albums => {
+          this.albums = albums;
+          this.albumChanges.next(albums);
+        },
         error: error => this.errorNotifications.next(error)
       });
   }
   errorNotifications = new Subject<Error>();
   albumChanges = new Subject<Album[]>();
 
+  albums: Album[] = [];
+
   getAlbums() {
-    return this.albumChanges.asObservable();
+    // return merge( this.albumChanges.asObservable(), of(this.albums));
+    // return concat( of(this.albums),  this.albumChanges.asObservable());
+    return this.albumChanges.pipe(startWith(this.albums));
+
     // return of([]);
   }
 }
