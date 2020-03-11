@@ -35,11 +35,11 @@ export class MusicSearchComponent implements OnInit {
     this.service.search(query);
   }
 
-  sub1!:Subscription
-  sub2!:Subscription
+  sub1!: Subscription;
+  sub2!: Subscription;
 
-  ngOnDestroy(){
-    this.sub1.unsubscribe()
-    this.sub2.unsubscribe()
+  ngOnDestroy() {
+    this.sub1.unsubscribe();
+    this.sub2.unsubscribe();
   }
 }
