@@ -1,19 +1,27 @@
 <div [formGroup]="searchForm">
   <mat-form-field appearance="standard" class="w-100">
-    <mat-label>Search albums...</mat-label>
+    <!-- <mat-label>Search albums...</mat-label> -->
 
-    <input matInput placeholder="Placeholder" formControlName="query" />
+    <input
+      matInput
+      placeholder="Placeholder"
+      formControlName="query"
+      [errorStateMatcher]="matcher"
+    />
+
+    <mat-error *ngIf="searchForm.get('query')!.hasError('required')">
+      Field is required
+    </mat-error>
+
+    <mat-error *ngIf="searchForm.get('query')!.getError('minlength') as error">
+      Minimum {{ error.requiredLength }} characters
+    </mat-error>
+
     <mat-hint>Hint</mat-hint>
 
-
     <mat-icon matPrefix>search</mat-icon>
-    <button
-      mat-raised-button
-      matSuffix
-      color="primary"
-      (click)="submit()"
-    >
-      Search
+    <button mat-icon-button matSuffix color="primary" (click)="submit()">
+      <mat-icon>search</mat-icon>
     </button>
   </mat-form-field>
 </div>

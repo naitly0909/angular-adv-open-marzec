@@ -1,6 +1,19 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { filter, distinctUntilChanged, debounceTime } from 'rxjs/operators';
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  Validators,
+  FormGroupDirective,
+  NgForm
+} from '@angular/forms';
+import {
+  filter,
+  distinctUntilChanged,
+  debounceTime,
+  tap
+} from 'rxjs/operators';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
   selector: 'music-apps-search-form',
@@ -10,7 +23,7 @@ import { filter, distinctUntilChanged, debounceTime } from 'rxjs/operators';
 export class SearchFormComponent implements OnInit {
   searchForm = this._fb.group({
     // query: new FormControl('batman',[],[])
-    query: ['batman', [], []],
+    query: ['batman', [Validators.required, Validators.minLength(3)], []],
     type: ['album']
   });
 
@@ -20,6 +33,10 @@ export class SearchFormComponent implements OnInit {
     const values = this.searchForm.get('query')!.valueChanges;
 
     const validValues = values.pipe(
+      // tap(value => {
+      //   console.log(value, this.searchForm.valid)
+      // }),
+      // filter(() => this.searchForm.valid),
       debounceTime(400),
       filter(q => q.length >= 3),
       distinctUntilChanged()
@@ -31,6 +48,24 @@ export class SearchFormComponent implements OnInit {
   ngOnInit(): void {}
 
   submit() {
+    this.searchForm.markAllAsTouched();
     this.search.emit(this.searchForm.get('query')!.value);
+  }
+
+  matcher = new MyErrorStateMatcher();
+}
+
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(
+      control &&
+      control.invalid &&
+      (control.dirty || control.touched || isSubmitted)
+    );
   }
 }
