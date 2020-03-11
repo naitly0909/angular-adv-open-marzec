@@ -1,5 +1,5 @@
 <mat-list>
-  <mat-list-item *ngFor="let todo of todos" (click)="select.emit(todo)">
+  <mat-list-item *ngFor="let todo of todos trackBy: trackFn" (click)="select.emit(todo)">
     <music-apps-todo-item [todo]="todo"> </music-apps-todo-item>
     <mat-divider></mat-divider>
   </mat-list-item>

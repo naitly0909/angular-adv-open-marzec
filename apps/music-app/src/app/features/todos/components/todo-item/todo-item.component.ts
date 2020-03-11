@@ -7,17 +7,13 @@ import { Todo } from '../../../../core/models/Todo';
   styleUrls: ['./todo-item.component.scss']
 })
 export class TodoItemComponent implements OnInit, AfterViewChecked {
+  @Input() todo!: Todo;
 
-  @Input() todo!:Todo
+  ngAfterViewChecked() {}
 
-
-  ngAfterViewChecked(){
-    console.log('TodoItemComponent')
+  constructor() {
+    console.log('TodoItemComponent');
   }
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

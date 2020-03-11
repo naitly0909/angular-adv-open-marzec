@@ -8,7 +8,7 @@ import { Todo } from 'apps/music-app/src/app/core/models/Todo';
   styleUrls: ['./todos-main.component.scss']
 })
 export class TodosMainComponent implements OnInit {
-  todos = of([
+  todos = [
     {
       userId: 1,
       id: 1,
@@ -26,12 +26,17 @@ export class TodosMainComponent implements OnInit {
       id: 3,
       title: 'delectus aut C',
       completed: false
-    },
-  ] as Todo[]);
+    }
+  ] as Todo[];
 
-  selected: Todo | null = null
+  selected: Todo | null = null;
 
-  constructor() {}
+  constructor() {
+    setInterval(() => {
+      this.todos.push(this.todos.shift()!);
+      this.todos = this.todos.map(t => ({ ...t }));
+    }, 1000);
+  }
 
   ngOnInit(): void {}
 }

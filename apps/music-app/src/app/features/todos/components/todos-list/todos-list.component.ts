@@ -7,11 +7,15 @@ import { Todo } from '../../../../core/models/Todo';
   styleUrls: ['./todos-list.component.scss']
 })
 export class TodosListComponent implements OnInit {
-  @Input() todos: Todo[] =[]
+  @Input() todos: Todo[] = [];
 
   @Output() select = new EventEmitter<Todo>();
 
   constructor() {}
+
+  trackFn(index: number, item: Todo) {
+    return item.id;
+  }
 
   ngOnInit(): void {}
 }
