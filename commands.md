@@ -169,4 +169,14 @@ ng generate @ngrx/schematics:store State --root --module app.module.ts
 
 
 # Reducer
-ng generate reducer User --reducers reducers/index.ts
+ng generate @ngrx/schematics:reducer Counter --reducers reducers/index.ts
+
+
+ng generate @ngrx/schematics:store Todo --module features/todos/todos.module.ts --dry-run
+
+ng generate @ngrx/schematics:feature features/todos/Todo --flat false --creators true --reducers reducers/index.ts --module features/todos/todos.module.ts --dry-run
+ 
+# Feature module
+$ ng generate @ngrx/schematics:store features/todos/Todo --module todos.module.ts
+
+$ ng generate @ngrx/schematics:feature features/todos/Todo --module todos.module.ts  --group --creators

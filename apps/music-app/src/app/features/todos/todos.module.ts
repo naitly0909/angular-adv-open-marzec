@@ -8,6 +8,8 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { TodoDetailsComponent } from './components/todo-details/todo-details.component';
 import { UiModule } from '../../shared/ui/ui.module';
 import { CounterComponent } from './views/counter/counter.component';
+import { StoreModule } from '@ngrx/store';
+import * as fromTodo from './reducers';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,6 @@ import { CounterComponent } from './views/counter/counter.component';
     TodoDetailsComponent,
     CounterComponent
   ],
-  imports: [CommonModule, TodosRoutingModule,UiModule]
+  imports: [CommonModule, TodosRoutingModule,UiModule, StoreModule.forFeature(fromTodo.todoFeatureKey, fromTodo.reducers, { metaReducers: fromTodo.metaReducers })]
 })
 export class TodosModule {}
