@@ -11,12 +11,13 @@ import * as jsonServer from 'json-server';
 // server.js
 const app = jsonServer.create() as express.Application;
 const middlewares = jsonServer.defaults();
-const router = jsonServer.router(path.join(__dirname, 'assets','db.json'));
+const router = jsonServer.router(path.join(__dirname, 'assets', 'db.json'));
 
 console.log(path.join(__dirname, './assets/db.json'));
 
 app.use(middlewares);
 app.get('/api', (req, res) => {
+  // res.setHeader()
   res.send({ message: 'Welcome to blog-api!', extra: 'Placki!' });
 });
 app.use(router);
