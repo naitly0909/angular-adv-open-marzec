@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Album } from '../../../../core/models/music/Album';
 import { MusicSearchService } from 'apps/music-app/src/app/core/services/music-search.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'music-apps-music-search',
@@ -10,19 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class MusicSearchComponent implements OnInit {
   results: Album[] = [
-    {
-      id: '123',
-      href: '123',
-      name: 'Placki',
-      artists: [],
-      images: [
-        {
-          url: 'https://www.placecage.com/c/200/300',
-          height: 300,
-          width: 300
-        }
-      ]
-    }
+
   ];
   message = '';
 
@@ -31,7 +20,9 @@ export class MusicSearchComponent implements OnInit {
   ngOnInit(): void {
     // this.search('batman');
 
-    this.service.getAlbums().subscribe({
+    this.service.getAlbums()
+    .pipe(tap(console.log))
+    .subscribe({
       next: results => (this.results = results),
       error: error => (this.message = error.message)
     });

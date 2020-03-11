@@ -11,7 +11,9 @@ import {
   of,
   Subject,
   merge,
-  concat
+  concat,
+  ReplaySubject,
+  BehaviorSubject
 } from 'rxjs';
 import { Album } from '../models/music/Album';
 
@@ -38,22 +40,34 @@ export class MusicSearchService {
       })
       .pipe(map(res => res.albums.items))
       .subscribe({
-        next: albums => {
-          this.albums = albums;
-          this.albumChanges.next(albums);
-        },
+        next: albums => this.albumChanges.next(albums),
         error: error => this.errorNotifications.next(error)
       });
   }
-  errorNotifications = new Subject<Error>();
-  albumChanges = new Subject<Album[]>();
+  errorNotifications = new ReplaySubject<Error>(3, 5_000);
+  albumChanges = new BehaviorSubject<Album[]>([
+    {
+      id: '123',
+      href: '123',
+      name: 'Placki',
+      artists: [],
+      images: [
+        {
+          url: 'https://www.placecage.com/c/200/300',
+          height: 300,
+          width: 300
+        }
+      ]
+    }
+  ]);
 
   albums: Album[] = [];
 
   getAlbums() {
     // return merge( this.albumChanges.asObservable(), of(this.albums));
     // return concat( of(this.albums),  this.albumChanges.asObservable());
-    return this.albumChanges.pipe(startWith(this.albums));
+    // return this.albumChanges.pipe(startWith(this.albums));
+    return this.albumChanges; //.pipe(startWith(this.albums));
 
     // return of([]);
   }

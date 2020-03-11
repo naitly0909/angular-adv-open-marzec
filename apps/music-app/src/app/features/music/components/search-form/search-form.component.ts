@@ -44,7 +44,7 @@ const asyncCensor = (
       console.log(control.value, result);
       observer.next(result);
       observer.complete();
-    }, 2000);
+    }, 1000);
 
     return () => {
       clearTimeout(handler);
