@@ -59,12 +59,11 @@ export class MusicSearchService {
   private queryChanges = new BehaviorSubject<string>('batman');
 
   constructor(private http: HttpClient) {
+    (window as any).subject = this.queryChanges
+
     this.queryChanges
       .pipe(
-        switchMap(
-          query => this.requestAlbums(query)
-          /* .pipe(catchError(),) */
-        ),
+        switchMap(query => this.requestAlbums(query)),
         map(res => res.albums.items)
       )
       .subscribe({
